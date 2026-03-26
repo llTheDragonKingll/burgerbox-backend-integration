@@ -104,4 +104,34 @@
 
 .next {
   right: 20px;
+
+}
+
+/* App.css */
+.Home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* CHANGE THIS: Remove height: 100vh and use min-height */
+  min-height: 80vh; 
+  padding: 2rem 60px; /* Reduced vertical padding */
+  background: #0f0f0f;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* App.css */
+.Home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* REMOVE fixed height entirely */
+  min-height: 100vh; 
+  height: auto; 
+  /* Reduce this padding to tighten the gap to the navbar and menu */
+  padding: 20px 60px; 
+  background: #0f0f0f;
+  color: white;
+  position: relative;
 }

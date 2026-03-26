@@ -71,3 +71,24 @@
 .card:hover::after {
   background: #ff8533;
 }
+
+/* burger.css */
+.burger-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  position: relative;
+  /* REDUCE TOP PADDING: change 60px to 20px */
+  padding: 20px 60px 60px 60px; 
+  background: #0a0a0a; /* Keep background consistent with Home.css */
+}
+
+/* burger.css */
+.burger-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  /* Change the first 60px to 10px */
+  padding: 10px 60px 60px 60px; 
+  background: #0f0f0f;
+}

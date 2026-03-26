@@ -82,3 +82,36 @@
   /* Add the same side padding as .Home to keep it aligned */
 
 }
+
+
+/* Home.css */
+.Home {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  /* REDUCE TOP PADDING: from 4rem to 1rem or 2rem */
+  padding: 2rem 10% 0 10%; 
+  font-family: 'Inter', sans-serif;
+}
+
+.heading p {
+  margin-bottom: 1.5rem; /* Reduced from 3rem */
+}
+
+.varieties {
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
+}
+
+/* Home.css */
+.Home {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  /* Set top padding to 0 to touch the section above it */
+  padding: 0 10% 20px 10%; 
+  margin-top: -20px; /* This "pulls" it up if there's still a gap */
+  font-family: 'Inter', sans-serif;
+}
+
+.heading h1 {
+  margin-top: 0; /* Ensure no default margin pushes it down */
+  padding-top: 2rem; 
+}

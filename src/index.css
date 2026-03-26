@@ -13,3 +13,9 @@ html {
 #menu, #home {
   scroll-margin-top: 80px; /* Adjust this to the height of your Navbar */
 }
+
+/* index.css */
+h1, h2, p, ul {
+  margin: 0;
+  padding: 0;
+}
