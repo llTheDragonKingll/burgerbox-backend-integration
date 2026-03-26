@@ -32,7 +32,7 @@ export default function Home() {
 
         <div className="varieties">
           <button value="Burger" onClick={changevarity}>Burger</button>
-          <button value="slides" onClick={changevarity}>Slides</button>
+          <button value="slides" onClick={changevarity}>Sides</button>
           <button value="Drinks" onClick={changevarity}>Drinks</button>
           <button value="Treats" onClick={changevarity}>Treats</button>
         </div>

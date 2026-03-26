@@ -1,0 +1,166 @@
+/* Custom Variables for that Neon Aesthetic */
+:root {
+  --neon-orange: #ff8c42;
+  --neon-green: #c9ff22;
+  --card-bg: #1a1a1a;
+  --dark-gradient: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+}
+
+.mega-container {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: #fff;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif; /* Or any bold sans-serif */
+}
+
+.header-section {
+  margin-bottom: 3rem;
+}
+
+.exclusive-tag {
+  color: var(--neon-green);
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+}
+
+.main-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.highlight-text {
+  color: var(--neon-orange);
+}
+
+/* Side-by-Side Grid */
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+}
+
+.offer-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.image-wrapper {
+  height: 200px;
+  position: relative;
+}
+
+.offer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.card-content {
+  padding: 1.5rem;
+  background: var(--dark-gradient);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.offer-title {
+  font-size: 2rem;
+  font-weight: 900;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.offer-desc {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.claim-btn {
+  margin-top: auto;
+  padding: 12px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-primary { background-color: var(--neon-orange); color: #000; }
+.btn-outline { 
+  background-color: transparent; 
+  border: 1px solid var(--neon-green); 
+  color: var(--neon-green); 
+}
+
+/* ... keep your variables the same ... */
+
+.mega-container {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  color: #fff;
+  padding: 4rem 2rem; /* Added more top padding */
+  font-family: 'Inter', sans-serif;
+  
+  /* Centering the content wrapper */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.header-section {
+  margin-bottom: 4rem;
+  text-align: center; /* Centers the "Mega Deals" text */
+}
+
+/* Centered Grid Layout */
+.offers-grid {
+  display: grid;
+  /* This creates 3 columns if space allows, otherwise wraps */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1100px; /* Limits width so it doesn't get too stretched */
+  justify-content: center; /* Centers cards if there are fewer than 3 */
+  margin: 0 auto;
+}
+
+.offer-card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures all cards are same height */
+  max-width: 350px; /* Prevents cards from becoming too wide in 1-column mode */
+  margin: 0 auto; /* Centers individual cards when they stack */
+}
+
+/* ... rest of your card styling (badge, image, buttons) remains the same ... */
