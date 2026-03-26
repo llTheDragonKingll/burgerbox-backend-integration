@@ -8,16 +8,24 @@ export default function Navbar(){
         <div className="navbar-component">
             <ul>
                 <li>
+                    <a href="#Home">
                     Home
+                    </a>
                 </li>
                 <li>
+                     <a href="#menu">
                     Menu
+                    </a>
                 </li>
                 <li>
+                     <a href="#Offers">
                     Offers
+                    </a>
                 </li>
                 <li>
+                     <a href="#Contact">
                     Contact
+                    </a>
                 </li>
             </ul>
         </div>

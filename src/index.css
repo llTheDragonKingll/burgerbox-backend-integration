@@ -4,3 +4,12 @@
  
 
 }
+
+/* index.css or App.css */
+html {
+  scroll-behavior: smooth;
+}
+
+#menu, #home {
+  scroll-margin-top: 80px; /* Adjust this to the height of your Navbar */
+}
