@@ -1,0 +1,89 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px 40px;
+  background-color: #1A1A1A;
+  color: white;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Logo */
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #FF6B00;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Glow effect on hover */
+.logo:hover {
+  text-shadow: 0 0 10px #FF6B00,
+               0 0 20px #FF6B00,
+               0 0 30px #FF6B00;
+}
+
+/* Nav Links */
+.navbar-component ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+/* Each link */
+.navbar-component ul li {
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  color: #ccc;
+}
+
+/* Hover effect */
+.navbar-component ul li:hover {
+  color: #FF6B00;
+}
+
+/* Right section (cart + login) */
+.navbar-component-2 {
+  display: flex;
+  gap: 15px;
+}
+
+/* Buttons */
+.navbar-component-2 button {
+  padding: 8px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+/* Cart button */
+.cart {
+  background: transparent;
+  color: white;
+  border: 1px solid #FF6B00;
+}
+
+/* Cart hover */
+.cart:hover {
+  background: #FF6B00;
+  color: black;
+}
+
+/* Login button */
+.login {
+  background: #FF6B00;
+  color: black;
+  font-weight: bold;
+}
+
+/* Login hover */
+.login:hover {
+  box-shadow: 0 0 10px #FF6B00;
+}
+
