@@ -1,19 +1,88 @@
-import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
+import burger1 from "./assets/burger1.jpeg";
+import burger2 from "./assets/burger2.jpeg";
+import burger3 from "./assets/burger3.jpeg";
+import burger4 from "./assets/burger4.jpeg";
+import { useEffect, useState } from "react";
+
+import "./App.css";
 
 function App() {
+  const lists = [
+    {
+      id: 1,
+      title: "New Release: THE MEGABOX",
+      heading: "STUFF YOUR FACE",
+      descript:
+        "Forget the diet. Embrace the grease. Our 100% wagyu patties are double-smashed for maximum crust and lethal flavour.",
+      button: "Order Now",
+      img: burger1,
+    },
+    {
+      id: 2,
+      title: "Chef Special: FIRE STACK",
+      heading: "FEEL THE HEAT",
+      descript:
+        "Loaded with jalapeños, spicy sauce and triple cheese. Built for people who love bold flavors and serious heat.",
+      button: "Order Now",
+      img: burger2,
+    },
+    {
+      id: 3,
+      title: "Limited Edition: CHEESE BURST",
+      heading: "MELT YOUR MOOD",
+      descript:
+        "A molten cheese core surrounded by crispy patties and fresh buns. Every bite is a cheese explosion.",
+      button: "Order Now",
+      img: burger3,
+    },
+    {
+      id: 4,
+      title: "Premium Range: SMOKY BBQ",
+      heading: "SMOKE THE HUNGER",
+      descript:
+        "Smoky BBQ sauce, grilled onions and double smashed patties give you the ultimate barbecue experience.",
+      button: "Order Now",
+      img: burger4,
+    },
 
+  ];
 
-  return (
-    <>
-  
-    
-    <div>
-      main content
-    </div>
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % lists.length);
+    }, 3000);
 
+    return () => clearInterval(interval);
+  }, []);
 
-    </>
-  ) 
+  function nextSlide() {
+    setIndex((prev) => (prev + 1) % lists.length);
   }
 
-export default App
+  function prevSlide() {
+    setIndex((prev) => (prev - 1 + lists.length) % lists.length);
+  }
+  return (
+    <>
+      <div className="Home">
+        <button className="prev" onClick={prevSlide}>{"<"}</button>
+        <div className="new-burgers-add">
+          <p>{lists[index].title}</p>
+          <h1>{lists[index].heading}</h1>
+          <p className="description">{lists[index].descript}</p>
+          <button>{lists[index].button}</button>
+        </div>
+
+        <div className="Add-image">
+          <img src={lists[index].img} alt="burger" />
+        </div>
+        <button className="next" onClick={nextSlide}>{">"}</button>
+      </div>
+    </>
+  );
+}
+
+
+export default App;
