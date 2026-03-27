@@ -22,11 +22,7 @@ export default function Navbar(){
                     Offers
                     </a>
                 </li>
-                <li>
-                     <a href="#Contact">
-                    Contact
-                    </a>
-                </li>
+               
             </ul>
         </div>
 
