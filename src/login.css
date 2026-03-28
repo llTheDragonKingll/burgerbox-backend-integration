@@ -1,0 +1,113 @@
+/* Full page */
+.login-page {
+  height: 100vh;
+  background: radial-gradient(circle at 20% 20%, #1a1f16, #0b0f0c 60%);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px 40px;
+}
+
+/* Top bar */
+.login-page .logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff7a2f;
+}
+
+.login-page .logo span {
+  color: #9cff2e;
+}
+
+.login-page button {
+  float: right;
+  background: transparent;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+}
+
+/* Main container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+
+/* Burger image */
+.image-container {
+  width: 420px;
+  transform: rotate(-6deg);
+  background: #0d0f0e;
+  padding: 20px;
+  box-shadow: 0 0 40px rgba(156, 255, 46, 0.15);
+}
+
+.image-container img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Login box */
+.login {
+  width: 350px;
+  margin-left: 80px;
+}
+
+.login h1 {
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.login h1 span {
+  color: #9cff2e;
+}
+
+.login p {
+  color: #aaa;
+  margin-bottom: 25px;
+}
+
+/* Labels */
+.login label {
+  font-size: 12px;
+  color: #777;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+/* Inputs */
+.login input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background: #0d0f0e;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Button */
+.login button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 25px;
+  border: none;
+  margin-top: 15px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff7a2f, #ff9a44);
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 122, 47, 0.6);
+}
+
+/* Bottom link */
+.login a {
+  color: #9cff2e;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 5px;
+}

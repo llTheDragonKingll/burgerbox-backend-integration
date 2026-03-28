@@ -5,7 +5,8 @@ import burger3 from "./assets/burger3.jpeg";
 import burger4 from "./assets/burger4.jpeg";
 import { useEffect, useState } from "react";
 import Home from "./Home.jsx";
-
+import Footer from "./footer.jsx";
+import Offer from "./Offer.jsx";
 import "./App.css";
 
 function App() {
@@ -67,7 +68,7 @@ function App() {
   }
   return (
     <>
-      <div id="Home"className="Home">
+      <div id="Home" className="Home">
         <button className="prev" onClick={prevSlide}>{"<"}</button>
         <div className="new-burgers-add">
           <p>{lists[index].title}</p>
@@ -82,9 +83,18 @@ function App() {
         <button className="next" onClick={nextSlide}>{">"}</button>
       </div>
 
-     <div id="menu">
+      <div id="menu">
         <Home />
       </div>
+
+      <div id="Offers">
+        <Offer />
+      </div>
+      <div>
+        <Footer />
+      </div>
+
+
 
     </>
   );
