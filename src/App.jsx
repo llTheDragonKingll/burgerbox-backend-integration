@@ -8,6 +8,8 @@ import Home from "./Home.jsx";
 import Footer from "./footer.jsx";
 import Offer from "./Offer.jsx";
 import "./App.css";
+import { motion as Motion } from "framer-motion";
+
 
 function App() {
   const lists = [
@@ -68,19 +70,38 @@ function App() {
   }
   return (
     <>
-      <div id="Home" className="Home">
-        <button className="prev" onClick={prevSlide}>{"<"}</button>
-        <div className="new-burgers-add">
+      <div
+      
+      
+      id="Home" className="Home">
+        
+        <Motion.button 
+         initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.35, ease: "easeOut" }} 
+        
+        className="prev" onClick={prevSlide}>{"<"}</Motion.button>
+        <Motion.div 
+         initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.35, ease: "easeOut" }} 
+        
+        className="new-burgers-add">
           <p>{lists[index].title}</p>
           <h1>{lists[index].heading}</h1>
           <p className="description">{lists[index].descript}</p>
           <button>{lists[index].button}</button>
-        </div>
+        </Motion.div>
 
-        <div className="Add-image">
+        <Motion.div
+         initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.35, ease: "easeOut" }} 
+        className="Add-image">
           <img src={lists[index].img} alt="burger" />
-        </div>
-        <button className="next" onClick={nextSlide}>{">"}</button>
+        </Motion.div>
+        <Motion.button className="next" onClick={nextSlide}>{">"}</Motion.button>
+        
       </div>
 
       <div id="menu">
@@ -93,6 +114,8 @@ function App() {
       <div>
         <Footer />
       </div>
+
+
 
 
 

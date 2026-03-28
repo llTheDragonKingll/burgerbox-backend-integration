@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "./CartContext.jsx";
+import { motion as Motion } from "framer-motion";
 
 export default function Cart() {
   const { cartItems, updateQty, removeFromCart, cartTotal, placeOrder } = useCart();
@@ -110,115 +111,119 @@ export default function Cart() {
   };
 
   return (
-    <div style={S.page}>
-      <div style={S.inner}>
-        <h1 style={S.heading}>YOUR <span style={{ color: "#f97316" }}>BAG</span></h1>
-        <p style={S.subHeading}>{cartItems.length} ITEM{cartItems.length !== 1 ? "S" : ""} READY FOR THE SQUEEZE</p>
+    <div style = { S.page } >
+    <Motion.div 
+     initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+    style={S.inner}>
+      <h1 style={S.heading}>YOUR <span style={{ color: "#f97316" }}>BAG</span></h1>
+      <p style={S.subHeading}>{cartItems.length} ITEM{cartItems.length !== 1 ? "S" : ""} READY FOR THE SQUEEZE</p>
 
-        {cartItems.length === 0 ? (
-          <div style={S.emptyState}>
-            <div style={{ fontSize: "64px", marginBottom: "16px" }}>🛍️</div>
-            <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "32px", color: "#444" }}>YOUR BAG IS EMPTY</h2>
-            <p style={{ fontFamily: "sans-serif", color: "#555", fontSize: "14px" }}>Go grab something greasy.</p>
-            <button onClick={() => navigate("/")} style={{
-              marginTop: "20px", background: "#f97316", border: "none", borderRadius: "999px",
-              color: "#fff", fontFamily: "'Bebas Neue', sans-serif", fontSize: "16px",
-              letterSpacing: "2px", padding: "14px 32px", cursor: "pointer",
-            }}>
-              BACK TO MENU
+      {cartItems.length === 0 ? (
+        <div style={S.emptyState}>
+          <div style={{ fontSize: "64px", marginBottom: "16px" }}>🛍️</div>
+          <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "32px", color: "#444" }}>YOUR BAG IS EMPTY</h2>
+          <p style={{ fontFamily: "sans-serif", color: "#555", fontSize: "14px" }}>Go grab something greasy.</p>
+          <button onClick={() => navigate("/")} style={{
+            marginTop: "20px", background: "#f97316", border: "none", borderRadius: "999px",
+            color: "#fff", fontFamily: "'Bebas Neue', sans-serif", fontSize: "16px",
+            letterSpacing: "2px", padding: "14px 32px", cursor: "pointer",
+          }}>
+            BACK TO MENU
+          </button>
+        </div>
+      ) : (
+        <div style={S.layout}>
+          <div style={S.itemsCol}>
+            {cartItems.map(item => (
+              <div key={`${item.id}-${item.category}`} style={S.card}>
+                <div style={S.imgBox}>
+                  {item.img
+                    ? <img src={item.img} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "10px" }} />
+                    : <span>{item.category === "drinks" ? "🥤" : item.category === "sides" ? "🍟" : item.category === "desserts" ? "🍫" : "🍔"}</span>
+                  }
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={S.itemTitle}>{item.title}</p>
+                  <p style={S.itemSub}>{item.category?.toUpperCase()}</p>
+                  <div style={S.qtyRow}>
+                    <button style={S.qtyBtn} onClick={() => updateQty(item.id, item.category, item.qty - 1)}>−</button>
+                    <span style={S.qtyNum}>{String(item.qty).padStart(2, "0")}</span>
+                    <button style={S.qtyBtn} onClick={() => updateQty(item.id, item.category, item.qty + 1)}>+</button>
+                  </div>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
+                  <span style={S.itemPrice}>${(item.price * item.qty).toFixed(2)}</span>
+                  <button style={S.removeBtn} onClick={() => removeFromCart(item.id, item.category)} title="Remove">✕</button>
+                </div>
+              </div>
+            ))}
+
+            <div style={S.upsellCard}>
+              <div>
+                <p style={S.upsellText}>FEELING EXTRA?</p>
+                <p style={S.upsellSub}>Drown your burgers in our signature neon cheese sauce.</p>
+              </div>
+              <button style={S.upsellBtn}>ADD MELT +$2.50</button>
+            </div>
+          </div>
+
+          <div style={S.summaryCard}>
+            <h2 style={S.summaryTitle}>SUMMARY</h2>
+            <div style={S.promoRow}>
+              <input
+                style={S.promoInput}
+                placeholder="PROMO CODE"
+                value={promo}
+                onChange={e => { setPromo(e.target.value); setPromoError(""); setPromoApplied(false); }}
+              />
+              <button style={S.promoBtn} onClick={handlePromo}>APPLY</button>
+            </div>
+            {promoError && <p style={{ color: "#f87171", fontFamily: "sans-serif", fontSize: "11px", marginTop: "-12px", marginBottom: "12px" }}>{promoError}</p>}
+            {promoApplied && <p style={{ color: "#22c55e", fontFamily: "sans-serif", fontSize: "11px", marginTop: "-12px", marginBottom: "12px" }}>✓ Promo applied!</p>}
+
+            <div style={S.lineRow}><span>Subtotal</span><span style={{ color: "#fff" }}>${cartTotal.toFixed(2)}</span></div>
+            {promoApplied && <div style={S.lineRow}><span style={{ color: "#22c55e" }}>Discount</span><span style={{ color: "#22c55e" }}>−${discount.toFixed(2)}</span></div>}
+            <div style={S.lineRow}><span>Shipping</span><span style={{ color: "#fff" }}>${shipping.toFixed(2)}</span></div>
+            <div style={S.lineRow}><span>Estimated Taxes</span><span style={{ color: "#fff" }}>${tax.toFixed(2)}</span></div>
+
+            <div style={S.totalRow}>
+              <span style={S.totalLabel}>TOTAL</span>
+              <span style={S.totalAmt}>${total.toFixed(2)}</span>
+            </div>
+
+            <button
+              style={S.checkoutBtn}
+              onClick={handleCheckout}
+              onMouseEnter={e => e.target.style.background = "#ea6c0a"}
+              onMouseLeave={e => e.target.style.background = "#f97316"}
+            >
+              PROCEED TO CHECKOUT
+            </button>
+            <p style={S.secure}>🔒 SECURE CHECKOUT</p>
+
+            <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginTop: "12px" }}>
+              {["💳", "🏦", "📱"].map(ic => (
+                <div key={ic} style={{ width: "36px", height: "24px", background: "#2a2010", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px" }}>{ic}</div>
+              ))}
+            </div>
+
+            {/* ✅ Continue shopping goes back to home */}
+            <button
+              onClick={() => navigate("/")}
+              style={{
+                width: "100%", marginTop: "12px", background: "none", border: "1px solid #3a3020",
+                borderRadius: "999px", color: "#666", fontFamily: "'Bebas Neue', sans-serif",
+                fontSize: "14px", letterSpacing: "1.5px", padding: "12px", cursor: "pointer",
+              }}
+            >
+              ← CONTINUE SHOPPING
             </button>
           </div>
-        ) : (
-          <div style={S.layout}>
-            <div style={S.itemsCol}>
-              {cartItems.map(item => (
-                <div key={`${item.id}-${item.category}`} style={S.card}>
-                  <div style={S.imgBox}>
-                    {item.img
-                      ? <img src={item.img} alt={item.title} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "10px" }} />
-                      : <span>{item.category === "drinks" ? "🥤" : item.category === "sides" ? "🍟" : item.category === "desserts" ? "🍫" : "🍔"}</span>
-                    }
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <p style={S.itemTitle}>{item.title}</p>
-                    <p style={S.itemSub}>{item.category?.toUpperCase()}</p>
-                    <div style={S.qtyRow}>
-                      <button style={S.qtyBtn} onClick={() => updateQty(item.id, item.category, item.qty - 1)}>−</button>
-                      <span style={S.qtyNum}>{String(item.qty).padStart(2, "0")}</span>
-                      <button style={S.qtyBtn} onClick={() => updateQty(item.id, item.category, item.qty + 1)}>+</button>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
-                    <span style={S.itemPrice}>${(item.price * item.qty).toFixed(2)}</span>
-                    <button style={S.removeBtn} onClick={() => removeFromCart(item.id, item.category)} title="Remove">✕</button>
-                  </div>
-                </div>
-              ))}
-
-              <div style={S.upsellCard}>
-                <div>
-                  <p style={S.upsellText}>FEELING EXTRA?</p>
-                  <p style={S.upsellSub}>Drown your burgers in our signature neon cheese sauce.</p>
-                </div>
-                <button style={S.upsellBtn}>ADD MELT +$2.50</button>
-              </div>
-            </div>
-
-            <div style={S.summaryCard}>
-              <h2 style={S.summaryTitle}>SUMMARY</h2>
-              <div style={S.promoRow}>
-                <input
-                  style={S.promoInput}
-                  placeholder="PROMO CODE"
-                  value={promo}
-                  onChange={e => { setPromo(e.target.value); setPromoError(""); setPromoApplied(false); }}
-                />
-                <button style={S.promoBtn} onClick={handlePromo}>APPLY</button>
-              </div>
-              {promoError && <p style={{ color: "#f87171", fontFamily: "sans-serif", fontSize: "11px", marginTop: "-12px", marginBottom: "12px" }}>{promoError}</p>}
-              {promoApplied && <p style={{ color: "#22c55e", fontFamily: "sans-serif", fontSize: "11px", marginTop: "-12px", marginBottom: "12px" }}>✓ Promo applied!</p>}
-
-              <div style={S.lineRow}><span>Subtotal</span><span style={{ color: "#fff" }}>${cartTotal.toFixed(2)}</span></div>
-              {promoApplied && <div style={S.lineRow}><span style={{ color: "#22c55e" }}>Discount</span><span style={{ color: "#22c55e" }}>−${discount.toFixed(2)}</span></div>}
-              <div style={S.lineRow}><span>Shipping</span><span style={{ color: "#fff" }}>${shipping.toFixed(2)}</span></div>
-              <div style={S.lineRow}><span>Estimated Taxes</span><span style={{ color: "#fff" }}>${tax.toFixed(2)}</span></div>
-
-              <div style={S.totalRow}>
-                <span style={S.totalLabel}>TOTAL</span>
-                <span style={S.totalAmt}>${total.toFixed(2)}</span>
-              </div>
-
-              <button
-                style={S.checkoutBtn}
-                onClick={handleCheckout}
-                onMouseEnter={e => e.target.style.background = "#ea6c0a"}
-                onMouseLeave={e => e.target.style.background = "#f97316"}
-              >
-                PROCEED TO CHECKOUT
-              </button>
-              <p style={S.secure}>🔒 SECURE CHECKOUT</p>
-
-              <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginTop: "12px" }}>
-                {["💳", "🏦", "📱"].map(ic => (
-                  <div key={ic} style={{ width: "36px", height: "24px", background: "#2a2010", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px" }}>{ic}</div>
-                ))}
-              </div>
-
-              {/* ✅ Continue shopping goes back to home */}
-              <button
-                onClick={() => navigate("/")}
-                style={{
-                  width: "100%", marginTop: "12px", background: "none", border: "1px solid #3a3020",
-                  borderRadius: "999px", color: "#666", fontFamily: "'Bebas Neue', sans-serif",
-                  fontSize: "14px", letterSpacing: "1.5px", padding: "12px", cursor: "pointer",
-                }}
-              >
-                ← CONTINUE SHOPPING
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </Motion.div>
+    </div >
   );
 }
