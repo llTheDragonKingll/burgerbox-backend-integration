@@ -6,7 +6,7 @@ import burger3 from "../assets/burger3.jpeg";
 import burger4 from "../assets/burger4.jpeg";
 import burger5 from "../assets/burger5.jpeg";
 import burger6 from "../assets/burger6.jpeg";
-
+import { motion as Motion } from "framer-motion";
 const burgers = [
   { id: "b1", category: "burgers", title: "VOID MASTER", descript: "Double stacked Wagyu beef, charcoal-grilled with a secret neon sauce and triple aged cheddar.", price: 14, tag: "SIGNATURE", img: burger1 },
   { id: "b2", category: "burgers", title: "FIRE BEAST", descript: "Spicy flame-grilled patty loaded with jalapeños, molten cheese, and fire sauce.", price: 12, tag: "SPICY", img: burger2 },
@@ -32,21 +32,33 @@ export default function Burger() {
     <div style={{ background: "#0f0d08", minHeight: "60vh", padding: "40px 32px" }}>
 
       {/* Heading */}
-      <div style={{ marginBottom: "32px" }}>
+      <Motion.div 
+      initial={{ y: -80, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.3 }}
+
+      
+      style={{ marginBottom: "32px" }}>
         <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "48px", color: "#fff", margin: 0, letterSpacing: "2px" }}>
           THE <span style={{ color: "#f97316" }}>BURGERS.</span>
         </h2>
         <p style={{ color: "#666", fontFamily: "sans-serif", fontSize: "13px", margin: "4px 0 0" }}>
           Built different. Built for legends.
         </p>
-      </div>
+      </Motion.div>
 
       {/* Grid */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
         {burgers.map(item => {
           const tagColor = tagColors[item.tag] || "#f97316";
           return (
-            <div
+            <Motion.div
+
+            initial={{ y: 80, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.3 }}
               key={item.id}
               style={{
                 background: "#1a1208",
@@ -154,7 +166,7 @@ export default function Burger() {
               >
                 ADD TO BAG
               </button>
-            </div>
+            </Motion.div>
           );
         })}
       </div>

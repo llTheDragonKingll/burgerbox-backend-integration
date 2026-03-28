@@ -32,14 +32,23 @@ const dealsData = [
 const Offer = () => {
   return (
     <div className="mega-container">
-      <header className="header-section">
+      <Motion.header className="header-section"
+      initial={{ y: -80, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.3 }}
+      >
         <p className="exclusive-tag">Exclusive Drops</p>
         <h1 className="main-title">Mega <span className="highlight-text">Deals</span></h1>
-      </header>
+      </Motion.header>
 
       <div className="offers-grid">
         {dealsData.map((deal, index) => (
           <Motion.div 
+          initial={{ y: 80, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: false, amount: 0.3 }}
             key={index}
             className="offer-card"
             whileHover={{ y: -8 }}
