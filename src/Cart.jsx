@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "./CartContext.jsx";
 
@@ -8,6 +8,14 @@ export default function Cart() {
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoError, setPromoError] = useState("");
   const navigate = useNavigate();
+
+  // 🔒 Redirect to login if not logged in
+  useEffect(() => {
+    const session = localStorage.getItem("bb_session");
+    if (!session) {
+      navigate("/login");
+    }
+  }, []);
 
   const VALID_PROMOS = { GREASE10: 0.1, BURGER20: 0.2 };
   const discount = promoApplied ? cartTotal * (VALID_PROMOS[promo.toUpperCase()] || 0) : 0;
@@ -195,6 +203,18 @@ export default function Cart() {
                   <div key={ic} style={{ width: "36px", height: "24px", background: "#2a2010", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px" }}>{ic}</div>
                 ))}
               </div>
+
+              {/* ✅ Continue shopping goes back to home */}
+              <button
+                onClick={() => navigate("/")}
+                style={{
+                  width: "100%", marginTop: "12px", background: "none", border: "1px solid #3a3020",
+                  borderRadius: "999px", color: "#666", fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: "14px", letterSpacing: "1.5px", padding: "12px", cursor: "pointer",
+                }}
+              >
+                ← CONTINUE SHOPPING
+              </button>
             </div>
           </div>
         )}

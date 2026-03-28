@@ -2,6 +2,9 @@ import burger1 from "../assets/burger1.jpeg";
 import burger2 from "../assets/burger2.jpeg";
 import burger3 from "../assets/burger3.jpeg";
 import burger4 from "../assets/burger4.jpeg";
+import burger5 from "../assets/burger5.jpeg";
+import burger6 from "../assets/burger6.jpeg";
+
 import './Burger.css';
 import { motion as Motion } from "framer-motion";
 import { useCart } from "../CartContext";
@@ -11,8 +14,8 @@ const burgers = [
   { id: "b2", category: "burgers", img: burger2, price: 12, title: "The Fire Beast", descript: "Spicy flame-grilled patty loaded with jalapeños, molten cheese, and our signature fire sauce" },
   { id: "b3", category: "burgers", img: burger3, price: 15, title: "The Cheese Overload", descript: "Stuffed cheese core, double smash patties, creamy mayo, and toasted butter brioche buns" },
   { id: "b4", category: "burgers", img: burger4, price: 13, title: "The Smoky King", descript: "Smoky BBQ glazed patties with crispy onions, bacon strips, and cheddar melt" },
-  { id: "b5", category: "burgers", img: burger1, price: 16, title: "The Titan Stack", descript: "Triple layered meat stack with cheese, lettuce, tomato, and house special titan sauce" },
-  { id: "b6", category: "burgers", img: burger2, price: 11, title: "The Classic Hero", descript: "Juicy grilled patty with fresh lettuce, tomato, pickles, and classic burger sauce" },
+  { id: "b5", category: "burgers", img: burger5, price: 16, title: "The Titan Stack", descript: "Triple layered meat stack with cheese, lettuce, tomato, and house special titan sauce" },
+  { id: "b6", category: "burgers", img: burger6, price: 11, title: "The Classic Hero", descript: "Juicy grilled patty with fresh lettuce, tomato, pickles, and classic burger sauce" },
 ];
 
 export default function Burger() {
@@ -32,15 +35,8 @@ export default function Burger() {
           <p>{burger.title}</p>
           <p>{burger.descript}</p>
           <button
+            className="add-btn"
             onClick={() => addToCart(burger)}
-            style={{
-              marginTop: "15px", width: "100%", background: "#ff6b00", border: "none",
-              color: "white", padding: "10px", borderRadius: "10px",
-              cursor: "pointer", fontWeight: "bold", fontSize: "14px",
-              transition: "background 0.3s",
-            }}
-            onMouseEnter={e => e.target.style.background = "#ff8533"}
-            onMouseLeave={e => e.target.style.background = "#ff6b00"}
           >
             ADD TO BAG
           </button>

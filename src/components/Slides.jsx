@@ -1,12 +1,19 @@
 import { useCart } from "../CartContext";
+import sides1 from "../assets/sides1.png";
+import sides2 from "../assets/sides2.png";
+import sides3 from "../assets/sides3.png";
+import sides4 from "../assets/sides4.png";
+import sides5 from "../assets/sides5.png";
+import sides6 from "../assets/sides6.png";
+
 
 const sides = [
-  { id: "s1", category: "sides", title: "NEON FRIES", descript: "Shoestring fries dusted with neon seasoning and ghost pepper flakes.", price: 5.50, tag: "SPICY" },
-  { id: "s2", category: "sides", title: "ONION RINGS OF DOOM", descript: "Thick-cut rings double-battered and deep-fried to a shattering crisp.", price: 6.00, tag: "CRISPY" },
-  { id: "s3", category: "sides", title: "MAC BOMB", descript: "Gruyere and smoked gouda mac in a crispy breadcrumb shell.", price: 7.50, tag: "CHEESY" },
-  { id: "s4", category: "sides", title: "LOADED SKINS", descript: "Potato skins loaded with pulled brisket, sour cream, and cheddar.", price: 8.00, tag: "LOADED" },
-  { id: "s5", category: "sides", title: "COLESLAW HIT", descript: "Tangy apple-cider slaw with a kick of sriracha and toasted sesame.", price: 4.00, tag: "FRESH" },
-  { id: "s6", category: "sides", title: "CORN RIBS", descript: "Slow-grilled corn ribs glazed with chipotle honey butter.", price: 6.50, tag: "GLAZED" },
+  { id: "s1", category: "sides", title: "NEON FRIES", descript: "Shoestring fries dusted with neon seasoning and ghost pepper flakes.", price: 5.50, tag: "SPICY", img: sides1 },
+  { id: "s2", category: "sides", title: "ONION RINGS OF DOOM", descript: "Thick-cut rings double-battered and deep-fried to a shattering crisp.", price: 6.00, tag: "CRISPY", img: sides2 },
+  { id: "s3", category: "sides", title: "MAC BOMB", descript: "Gruyere and smoked gouda mac in a crispy breadcrumb shell.", price: 7.50, tag: "CHEESY", img: sides3 },
+  { id: "s4", category: "sides", title: "LOADED SKINS", descript: "Potato skins loaded with pulled brisket, sour cream, and cheddar.", price: 8.00, tag: "LOADED", img: sides4 },
+  { id: "s5", category: "sides", title: "COLESLAW HIT", descript: "Tangy apple-cider slaw with a kick of sriracha and toasted sesame.", price: 4.00, tag: "FRESH", img: sides5 },
+  { id: "s6", category: "sides", title: "CORN RIBS", descript: "Slow-grilled corn ribs glazed with chipotle honey butter.", price: 6.50, tag: "GLAZED", img: sides6 },
 ];
 
 const tagColors = {
@@ -40,7 +47,10 @@ export default function Slides() {
             >
               {/* Image placeholder */}
               <div style={{ width: "100%", height: "160px", background: "#2a2010", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "48px" }}>
-                🍟
+                <img src={item.img} alt={item.title}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+
               </div>
 
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>

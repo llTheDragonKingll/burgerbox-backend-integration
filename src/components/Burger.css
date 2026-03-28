@@ -3,8 +3,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  padding: 60px;
-  background: #0f0f0f;
+  padding: 10px 60px 60px 60px;
+  background: #0a0a0a;
 }
 
 /* Card */
@@ -54,41 +54,23 @@
   margin-top: 5px;
 }
 
-/* Add Button */
-.card::after {
-  content: "Add to Cart";
+/* ✅ Real Add to Bag button — replaces the old CSS ::after fake button */
+.add-btn {
   display: block;
+  width: 100%;
   margin-top: 15px;
   background: #ff6b00;
   color: white;
   text-align: center;
   padding: 10px;
   border-radius: 10px;
+  border: none;
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
-.card:hover::after {
+.add-btn:hover {
   background: #ff8533;
-}
-
-/* burger.css */
-.burger-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  position: relative;
-  /* REDUCE TOP PADDING: change 60px to 20px */
-  padding: 20px 60px 60px 60px; 
-  background: #0a0a0a; /* Keep background consistent with Home.css */
-}
-
-/* burger.css */
-.burger-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  /* Change the first 60px to 10px */
-  padding: 10px 60px 60px 60px; 
-  background: #0f0f0f;
 }
