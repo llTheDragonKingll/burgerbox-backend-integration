@@ -9,7 +9,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const dropRef = useRef(null);
   const navigate = useNavigate();
-  const { cartCount } = useCart();
+  const { cartCount, orders } = useCart();
 
   useEffect(() => {
     function readSession() {
@@ -40,6 +40,17 @@ export default function Navbar() {
     navigate('/');
   }
 
+  function handleNavClick(sectionId) {
+    if (window.location.pathname === '/') {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  }
+
   const initials = session?.name
     ? session.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
     : '?';
@@ -60,16 +71,16 @@ export default function Navbar() {
         {/* Desktop nav links */}
         <div className="navbar-component">
           <ul>
-            <li><a href="#Home">Home</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#Offers">Offers</a></li>
+            <li onClick={() => handleNavClick('Home')} style={{ cursor: 'pointer' }}>Home</li>
+            <li onClick={() => handleNavClick('menu')} style={{ cursor: 'pointer' }}>Menu</li>
+            <li onClick={() => handleNavClick('Offers')} style={{ cursor: 'pointer' }}>Offers</li>
           </ul>
         </div>
 
         {/* Desktop right buttons */}
         <div className="navbar-component-2">
           <div style={{ position: 'relative', display: 'inline-block' }}>
-            <button className="cart" onClick={() => navigate('/cart')}>Cart</button>
+            <button className="cart" onClick={() => navigate('/cart')}>   <i className="fa-solid fa-cart-shopping"></i> Cart</button>
             {cartCount > 0 && (
               <span style={{
                 position: 'absolute', top: '-6px', right: '-6px',
@@ -114,7 +125,7 @@ export default function Navbar() {
                     <div style={{ fontSize: '11px' }}>{session.email}</div>
                   </div>
                   <button onClick={() => { setDropOpen(false); navigate('/profile'); }} style={dropItemStyle}>👤 My Profile</button>
-                  <button onClick={() => { setDropOpen(false); navigate('/cart'); }} style={dropItemStyle}>🛍️ My Bag {cartCount > 0 && `(${cartCount})`}</button>
+                  <button onClick={() => { setDropOpen(false); orders?.length > 0 ? navigate(`/order/${orders[0].id}`) : navigate('/cart'); }} style={dropItemStyle}>📦 My Orders {orders?.length > 0 && `(${orders.length})`}</button>
                   <button onClick={handleLogout} style={{ ...dropItemStyle, color: '#f87171' }}>🚪 Sign Out</button>
                 </div>
               )}
@@ -134,9 +145,9 @@ export default function Navbar() {
 
       {/* Mobile dropdown menu */}
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-        <a href="#Home" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="#menu" onClick={() => setMenuOpen(false)}>Menu</a>
-        <a href="#Offers" onClick={() => setMenuOpen(false)}>Offers</a>
+        <span onClick={() => { setMenuOpen(false); handleNavClick('Home'); }} style={{ cursor: 'pointer' }}>Home</span>
+        <span onClick={() => { setMenuOpen(false); handleNavClick('menu'); }} style={{ cursor: 'pointer' }}>Menu</span>
+        <span onClick={() => { setMenuOpen(false); handleNavClick('Offers'); }} style={{ cursor: 'pointer' }}>Offers</span>
 
         <div className="mobile-btns">
           <button

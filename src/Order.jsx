@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "./CartContext";
 import { useState, useEffect } from "react";
+import { motion as Motion } from "framer-motion";
 
 const STATUSES = [
   { key: "kitchen", label: "KITCHEN", sub: "FLAME GRILLING", icon: "🍳" },
@@ -102,7 +103,12 @@ export default function Order() {
 
   return (
     <div style={S.page}>
-      <div style={S.inner}>
+      <Motion.div 
+        initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+      style={S.inner}>
         <h1 style={S.heading}>WHERE'S THE <span style={{ color: "#f97316" }}>HEAT?</span></h1>
         <p style={S.orderMeta}>ORDER #{order.id} • EST. ARRIVAL: {order.eta}</p>
 
@@ -195,7 +201,7 @@ export default function Order() {
             </button>
           </div>
         </div>
-      </div>
+      </Motion.div>
     </div>
   );
 }

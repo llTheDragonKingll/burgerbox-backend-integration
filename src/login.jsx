@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion as Motion } from "framer-motion";
 
 const S = {
   page: {
@@ -271,7 +272,12 @@ export default function Login() {
       </div>
 
       <div style={S.container}>
-        <div style={S.formSide}>
+        <Motion.div 
+        initial={{ y: 60, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false, amount: 0.3 }}
+        style={S.formSide}>
           <h1 style={S.heading}>
             {isLogin
               ? <>WASSUP <span style={S.headingSpan}>AGAIN?</span></>
@@ -368,7 +374,7 @@ export default function Login() {
               {isLogin ? " CREATE ACCOUNT" : " SIGN IN"}
             </span>
           </p>
-        </div>
+        </Motion.div>
       </div>
     </div>
   );
