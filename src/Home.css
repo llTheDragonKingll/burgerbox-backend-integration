@@ -1,54 +1,53 @@
 /* Home.css */
 
 .Home {
-  background-color: #0a0a0a; /* Dark charcoal/black background */
+  background-color: #0a0a0a;
   color: #ffffff;
-  
-  padding: 4rem 10%;
+  padding: 2rem 10% 0 10%;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  
 }
 
 .heading h1 {
-  font-size: 4.5rem; /* Large, impactful size */
+  font-size: 4.5rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: -2px; /* Tight letter spacing like the image */
+  letter-spacing: -2px;
   margin-bottom: 0.5rem;
   line-height: 1;
+  margin-top: 0;
 }
 
-/* The orange "POISON" style */
 .heading h1 span {
-  color: #f28b50; /* The specific peach/orange tone from your image */
+  color: #f28b50;
 }
 
 .heading p {
-  color: #a0a0a0; /* Slightly dimmed for the description */
+  color: #a0a0a0;
   font-size: 1.1rem;
   max-width: 600px;
   line-height: 1.6;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem; /* was 3rem — this was causing the gap */
 }
 
 /* Button Navigation Styling */
 .varieties {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  
+  gap: 1rem;
+  margin-bottom: 0; /* no bottom margin — grid starts immediately */
+  flex-wrap: wrap;
 }
 
 .varieties button {
   background: transparent;
   border: 1px solid #333;
   color: #fff;
-  padding: 0.8rem 2rem;
+  padding: 0.6rem 1.6rem;
   border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
   text-transform: capitalize;
   transition: all 0.3s ease;
+  font-size: 0.95rem;
 }
 
 .varieties button:hover {
@@ -58,60 +57,73 @@
 }
 
 .varities-burger {
+  background-color: #0a0a0a;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
 }
 
-.Home {
-    
-  background-color: #0a0a0a;
-  color: #ffffff;
-  /* Change padding-bottom from 4rem to 0 */
-  padding: 4rem 10% 0 10%; 
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
- 
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .Home {
+    padding: 1.5rem 5% 0 5%;
+  }
+
+  .heading h1 {
+    font-size: 3.2rem;
+  }
 }
 
-.varities-burger {
-  background-color: #0a0a0a; /* Add background here too */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  /* Add the same side padding as .Home to keep it aligned */
+@media (max-width: 768px) {
+  .Home {
+    padding: 1.2rem 4% 0 4%;
+  }
 
+  .heading h1 {
+    font-size: 2.6rem;
+    letter-spacing: -1px;
+  }
+
+  .heading p {
+    font-size: 0.95rem;
+  }
+
+  .varieties {
+    gap: 0.6rem;
+  }
+
+  .varieties button {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .varities-burger {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
 }
 
+@media (max-width: 480px) {
+  .Home {
+    padding: 1rem 4% 0 4%;
+  }
 
-/* Home.css */
-.Home {
-  background-color: #0a0a0a;
-  color: #ffffff;
-  /* REDUCE TOP PADDING: from 4rem to 1rem or 2rem */
-  padding: 2rem 10% 0 10%; 
-  font-family: 'Inter', sans-serif;
-}
+  .heading h1 {
+    font-size: 2rem;
+  }
 
-.heading p {
-  margin-bottom: 1.5rem; /* Reduced from 3rem */
-}
+  .varieties {
+    flex-wrap: wrap;
+  }
 
-.varieties {
-  margin-bottom: 1rem; /* Reduced from 1.5rem */
-}
+  .varieties button {
+    padding: 0.45rem 1rem;
+    font-size: 0.8rem;
+  }
 
-/* Home.css */
-.Home {
-  background-color: #0a0a0a;
-  color: #ffffff;
-  /* Set top padding to 0 to touch the section above it */
-  padding: 0 10% 20px 10%; 
-  margin-top: -20px; /* This "pulls" it up if there's still a gap */
-  font-family: 'Inter', sans-serif;
-}
-
-.heading h1 {
-  margin-top: 0; /* Ensure no default margin pushes it down */
-  padding-top: 2rem; 
+  .varities-burger {
+    grid-template-columns: 1fr;
+  }
 }

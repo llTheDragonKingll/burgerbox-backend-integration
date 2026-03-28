@@ -1,20 +1,22 @@
-/* Whole Home Section */
+/* ─── HERO SLIDER ──────────────────────────────────────── */
 .Home {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 90vh;
-  padding: 0 60px;
+  min-height: 90vh;
+  padding: 60px 60px 40px;
   background: #0f0f0f;
   color: white;
   font-family: 'Poppins', sans-serif;
-  height: 100vh;
-  transition: all 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* Left Text Section */
 .new-burgers-add {
   width: 50%;
+  z-index: 1;
 }
 
 .new-burgers-add p:first-child {
@@ -30,7 +32,7 @@
 .new-burgers-add h1 {
   font-size: 70px;
   font-weight: 800;
-  line-height: 70px;
+  line-height: 1;
   margin-bottom: 20px;
 }
 
@@ -40,12 +42,14 @@
 
 .new-burgers-add p {
   color: #aaa;
-  width: 50%;
   margin-bottom: 25px;
 }
-.description{
-  width: 50%;
+
+.description {
+  font-size: 15px;
+  max-width: 420px;
 }
+
 /* Button */
 .new-burgers-add button {
   background: #FF6B00;
@@ -56,6 +60,7 @@
   border-radius: 25px;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 15px;
 }
 
 .new-burgers-add button:hover {
@@ -65,73 +70,121 @@
 
 /* Right Image Section */
 .Add-image {
-  width: 50%;
+  width: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
 }
 
 /* Burger Image */
 .Add-image img {
-  width: 350px;
+  width: 100%;
+  max-width: 380px;
   transform: rotate(-8deg);
   transition: 0.4s;
   filter: drop-shadow(0 0 25px rgba(255, 107, 0, 0.6));
 }
 
-/* Hover effect */
 .Add-image img:hover {
   transform: rotate(0deg) scale(1.05);
   filter: drop-shadow(0 0 40px rgba(255, 107, 0, 0.9));
 }
 
+/* Prev / Next buttons */
 .prev, .next {
-  font-size: 30px;
-  padding: 10px 15px;
+  font-size: 26px;
+  padding: 8px 14px;
   cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #0f0f0f;
-  border: none;
+  background-color: rgba(15,15,15,0.7);
+  border: 1px solid #333;
+  border-radius: 8px;
   color: white;
+  z-index: 10;
+  transition: background 0.2s;
 }
 
-.prev {
-  left: 10px;
+.prev:hover, .next:hover {
+  background-color: #FF6B00;
 }
 
-.next {
-  right: 20px;
+.prev { left: 16px; }
+.next { right: 16px; }
 
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .Home {
+    padding: 50px 40px 36px;
+    min-height: 80vh;
+  }
+
+  .new-burgers-add h1 {
+    font-size: 52px;
+  }
+
+  .Add-image img {
+    max-width: 300px;
+  }
 }
 
-/* App.css */
-.Home {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* CHANGE THIS: Remove height: 100vh and use min-height */
-  min-height: 80vh; 
-  padding: 2rem 60px; /* Reduced vertical padding */
-  background: #0f0f0f;
-  color: white;
-  position: relative;
-  overflow: hidden;
+@media (max-width: 768px) {
+  .Home {
+    flex-direction: column;
+    padding: 80px 24px 48px;
+    min-height: auto;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .new-burgers-add {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .new-burgers-add h1 {
+    font-size: 42px;
+  }
+
+  .description {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .Add-image {
+    width: 100%;
+  }
+
+  .Add-image img {
+    max-width: 260px;
+    transform: rotate(-4deg);
+  }
+
+  .prev { left: 6px; font-size: 20px; padding: 6px 10px; }
+  .next { right: 6px; font-size: 20px; padding: 6px 10px; }
 }
 
-/* App.css */
-.Home {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* REMOVE fixed height entirely */
-  min-height: 100vh; 
-  height: auto; 
-  /* Reduce this padding to tighten the gap to the navbar and menu */
-  padding: 20px 60px; 
-  background: #0f0f0f;
-  color: white;
-  position: relative;
+@media (max-width: 480px) {
+  .Home {
+    padding: 70px 16px 36px;
+    gap: 24px;
+  }
+
+  .new-burgers-add h1 {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  .new-burgers-add button {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .Add-image img {
+    max-width: 200px;
+  }
 }

@@ -9,6 +9,13 @@ export default function Profile() {
   const [editMode, setEditMode] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", home: "", work: "" });
   const [saved, setSaved] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     try {
@@ -48,27 +55,32 @@ export default function Profile() {
 
   const S = {
     page: { background: "#0f0d08", minHeight: "100vh", color: "#fff", fontFamily: "'Bebas Neue', sans-serif" },
-    inner: { maxWidth: "960px", margin: "0 auto", padding: "40px 32px" },
-    topRow: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" },
+    inner: { maxWidth: "960px", margin: "0 auto", padding: isMobile ? "24px 16px" : "40px 32px" },
+    topRow: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: "20px",
+      marginBottom: "20px",
+    },
     heroCard: {
       background: "#1a1208", border: "1px solid #2a2010", borderRadius: "14px",
-      padding: "28px", display: "flex", alignItems: "center", gap: "20px",
+      padding: "24px", display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap",
     },
     avatarCircle: {
-      width: "80px", height: "80px", borderRadius: "50%",
+      width: "72px", height: "72px", borderRadius: "50%",
       background: "#2a2010", border: "3px solid #f97316",
       display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: "32px", flexShrink: 0, overflow: "hidden",
+      fontSize: "28px", flexShrink: 0, overflow: "hidden",
       boxShadow: "0 0 24px rgba(249,115,22,0.3)",
     },
-    nameTag: { fontFamily: "'Bebas Neue', sans-serif", fontSize: "38px", letterSpacing: "2px", lineHeight: 1, margin: 0 },
+    nameTag: { fontFamily: "'Bebas Neue', sans-serif", fontSize: isMobile ? "28px" : "38px", letterSpacing: "2px", lineHeight: 1, margin: 0 },
     idText: { fontFamily: "sans-serif", fontSize: "11px", color: "#666", marginTop: "4px", letterSpacing: "1px" },
     vibeBadge: {
       display: "inline-block", background: "#22c55e", color: "#fff",
       fontFamily: "'Bebas Neue', sans-serif", fontSize: "12px", letterSpacing: "1px",
       padding: "3px 12px", borderRadius: "999px", marginTop: "8px",
     },
-    greaseCard: { background: "#1a1208", border: "1px solid #2a2010", borderRadius: "14px", padding: "28px" },
+    greaseCard: { background: "#1a1208", border: "1px solid #2a2010", borderRadius: "14px", padding: "24px" },
     greaseLabel: { display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "12px" },
     greasePct: { fontFamily: "'Bebas Neue', sans-serif", fontSize: "40px", color: "#f97316" },
     greaseBar: { height: "12px", background: "#2a2010", borderRadius: "999px", overflow: "hidden" },
@@ -78,7 +90,12 @@ export default function Profile() {
       transition: "width 1s ease",
     },
     greaseSub: { fontFamily: "sans-serif", fontSize: "11px", color: "#666", marginTop: "8px" },
-    midGrid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "20px" },
+    midGrid: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: "20px",
+      marginBottom: "20px",
+    },
     sectionCard: { background: "#1a1208", border: "1px solid #2a2010", borderRadius: "14px", padding: "24px" },
     sectionTitle: { fontFamily: "'Bebas Neue', sans-serif", fontSize: "20px", letterSpacing: "1.5px", margin: "0 0 16px", color: "#fff" },
     sectionTitleRow: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" },
@@ -103,7 +120,11 @@ export default function Profile() {
     chipLabel: { fontFamily: "sans-serif", fontSize: "10px", color: "#666", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: "6px" },
     chipNum: { fontFamily: "'Bebas Neue', sans-serif", fontSize: "26px", letterSpacing: "4px", color: "#fff" },
     chipExp: { fontFamily: "sans-serif", fontSize: "11px", color: "#555", marginTop: "4px" },
-    actionRow: { display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px" },
+    actionRow: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr 1fr",
+      gap: "12px",
+    },
     actionBtn: (bg) => ({
       background: bg, border: "none", borderRadius: "12px", color: "#fff",
       fontFamily: "'Bebas Neue', sans-serif", fontSize: "16px", letterSpacing: "1.5px",
@@ -124,7 +145,6 @@ export default function Profile() {
   return (
     <div style={S.page}>
       <div style={S.inner}>
-
         {/* Top row */}
         <div style={S.topRow}>
           <div style={S.heroCard}>
@@ -224,9 +244,9 @@ export default function Profile() {
             <input style={S.editInput} value={form.home} onChange={e => setForm(f => ({ ...f, home: e.target.value }))} />
             <label style={S.editLabel}>Work Address</label>
             <input style={S.editInput} value={form.work} onChange={e => setForm(f => ({ ...f, work: e.target.value }))} />
-            <div style={{ display: "flex", gap: "10px" }}>
-              <button onClick={handleSave} style={{ flex: 1, background: "#f97316", border: "none", borderRadius: "8px", color: "#fff", fontFamily: "'Bebas Neue', sans-serif", fontSize: "16px", letterSpacing: "1.5px", padding: "12px", cursor: "pointer" }}>SAVE CHANGES</button>
-              <button onClick={() => setEditMode(false)} style={{ flex: 1, background: "#2a2010", border: "1px solid #3a3020", borderRadius: "8px", color: "#888", fontFamily: "'Bebas Neue', sans-serif", fontSize: "16px", letterSpacing: "1.5px", padding: "12px", cursor: "pointer" }}>CANCEL</button>
+            <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+              <button onClick={handleSave} style={{ flex: 1, minWidth: "120px", background: "#f97316", border: "none", borderRadius: "8px", color: "#fff", fontFamily: "'Bebas Neue', sans-serif", fontSize: "16px", letterSpacing: "1.5px", padding: "12px", cursor: "pointer" }}>SAVE CHANGES</button>
+              <button onClick={() => setEditMode(false)} style={{ flex: 1, minWidth: "120px", background: "#2a2010", border: "1px solid #3a3020", borderRadius: "8px", color: "#888", fontFamily: "'Bebas Neue', sans-serif", fontSize: "16px", letterSpacing: "1.5px", padding: "12px", cursor: "pointer" }}>CANCEL</button>
             </div>
           </div>
         )}
@@ -252,7 +272,6 @@ export default function Profile() {
             <span>🔑</span>
           </button>
         </div>
-
       </div>
     </div>
   );

@@ -3,14 +3,14 @@
   color: #9ca3af;
   padding: 20px 40px;
   font-family: Arial, Helvetica, sans-serif;
-  
 }
 
 .footer-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .logo {
@@ -22,9 +22,12 @@
 .footer-links {
   list-style: none;
   display: flex;
-  gap: 40px;
+  gap: 28px;
   font-size: 14px;
   letter-spacing: 1px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 }
 
 .footer-links li {
@@ -39,4 +42,31 @@
 .copyright {
   font-size: 12px;
   color: #6b7280;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px 24px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .footer-links {
+    gap: 16px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    gap: 10px;
+    font-size: 12px;
+  }
 }

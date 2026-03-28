@@ -1,10 +1,11 @@
 /* Full page */
 .login-page {
-  height: 100vh;
+  min-height: 100vh;
   background: radial-gradient(circle at 20% 20%, #1a1f16, #0b0f0c 60%);
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   padding: 20px 40px;
+  box-sizing: border-box;
 }
 
 /* Top bar */
@@ -18,29 +19,24 @@
   color: #9cff2e;
 }
 
-.login-page button {
-  float: right;
-  background: transparent;
-  border: none;
-  color: #aaa;
-  cursor: pointer;
-}
-
 /* Main container */
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  min-height: 85vh;
+  gap: 60px;
+  flex-wrap: wrap;
 }
 
 /* Burger image */
 .image-container {
-  width: 420px;
+  width: 380px;
   transform: rotate(-6deg);
   background: #0d0f0e;
   padding: 20px;
   box-shadow: 0 0 40px rgba(156, 255, 46, 0.15);
+  flex-shrink: 0;
 }
 
 .image-container img {
@@ -51,7 +47,7 @@
 /* Login box */
 .login {
   width: 350px;
-  margin-left: 80px;
+  margin-left: 0;
 }
 
 .login h1 {
@@ -69,7 +65,6 @@
   margin-bottom: 25px;
 }
 
-/* Labels */
 .login label {
   font-size: 12px;
   color: #777;
@@ -78,7 +73,6 @@
   margin-bottom: 5px;
 }
 
-/* Inputs */
 .login input {
   width: 100%;
   padding: 12px;
@@ -88,9 +82,9 @@
   background: #0d0f0e;
   color: white;
   margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
-/* Button */
 .login button {
   width: 100%;
   padding: 14px;
@@ -104,10 +98,55 @@
   box-shadow: 0 0 20px rgba(255, 122, 47, 0.6);
 }
 
-/* Bottom link */
 .login a {
   color: #9cff2e;
   text-decoration: none;
   font-weight: bold;
   margin-left: 5px;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .image-container {
+    width: 280px;
+  }
+}
+
+@media (max-width: 700px) {
+  .login-page {
+    padding: 20px 20px;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 24px;
+    min-height: auto;
+    padding: 20px 0;
+  }
+
+  .image-container {
+    display: none; /* Hide decorative image on small screens */
+  }
+
+  .login {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .login h1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login h1 {
+    font-size: 26px;
+  }
+
+  .login input,
+  .login button {
+    padding: 11px;
+    font-size: 14px;
+  }
 }

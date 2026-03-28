@@ -3,16 +3,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 15px 40px;
   background-color: #1A1A1A;
   color: white;
-
   font-family: 'Poppins', sans-serif;
-   position: sticky;
+  position: sticky;
   top: 0;
   z-index: 1000;
- 
 }
 
 /* Logo */
@@ -22,13 +19,11 @@
   color: #FF6B00;
   cursor: pointer;
   transition: 0.3s;
+  flex-shrink: 0;
 }
 
-/* Glow effect on hover */
 .logo:hover {
-  text-shadow: 0 0 10px #FF6B00,
-               0 0 20px #FF6B00,
-               0 0 30px #FF6B00;
+  text-shadow: 0 0 10px #FF6B00, 0 0 20px #FF6B00, 0 0 30px #FF6B00;
 }
 
 /* Nav Links */
@@ -36,9 +31,10 @@
   display: flex;
   list-style: none;
   gap: 30px;
+  margin: 0;
+  padding: 0;
 }
 
-/* Each link */
 .navbar-component ul li {
   cursor: pointer;
   transition: 0.3s;
@@ -46,7 +42,6 @@
   color: #ccc;
 }
 
-/* Hover effect */
 .navbar-component ul li:hover {
   color: #FF6B00;
 }
@@ -55,6 +50,7 @@
 .navbar-component-2 {
   display: flex;
   gap: 15px;
+  align-items: center;
 }
 
 /* Buttons */
@@ -70,10 +66,9 @@
 .cart {
   background: transparent;
   color: white;
-  border: 1px solid #FF6B00;
+  border: 1px solid #FF6B00 !important;
 }
 
-/* Cart hover */
 .cart:hover {
   background: #FF6B00;
   color: black;
@@ -86,17 +81,100 @@
   font-weight: bold;
 }
 
-/* Login hover */
 .login:hover {
   box-shadow: 0 0 10px #FF6B00;
 }
-
 
 a {
   text-decoration: none;
   color: white;
 }
 
-a:hover{
-    color: #CCFF00;
+a:hover {
+  color: #CCFF00;
+}
+
+/* Hamburger — hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #1a1a1a;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  padding: 16px 24px;
+  border-top: 1px solid #2a2a2a;
+  z-index: 999;
+  gap: 12px;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu a,
+.mobile-menu li {
+  font-size: 16px;
+  color: #ccc;
+  list-style: none;
+  padding: 6px 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.mobile-menu .mobile-btns {
+  display: flex;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.mobile-menu .mobile-btns button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 20px;
+    position: relative; /* allows absolute mobile menu */
+  }
+
+  .navbar-component {
+    display: none;
+  }
+
+  .navbar-component-2 {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
 }

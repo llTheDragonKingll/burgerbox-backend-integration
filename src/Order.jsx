@@ -12,9 +12,16 @@ export default function Order() {
   const { id } = useParams();
   const { orders, addToCart } = useCart();
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const order = orders.find(o => o.id === id) || orders[0];
   const [statusIndex, setStatusIndex] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!order) return;
@@ -39,25 +46,29 @@ export default function Order() {
 
   const S = {
     page: { background: "#0f0d08", minHeight: "100vh", color: "#fff", fontFamily: "'Bebas Neue', sans-serif" },
-    inner: { maxWidth: "1000px", margin: "0 auto", padding: "40px 32px" },
-    heading: { fontSize: "60px", lineHeight: 1, margin: "0 0 6px", letterSpacing: "2px" },
+    inner: { maxWidth: "1000px", margin: "0 auto", padding: isMobile ? "24px 16px" : "40px 32px" },
+    heading: { fontSize: isMobile ? "36px" : "60px", lineHeight: 1, margin: "0 0 6px", letterSpacing: "2px" },
     orderMeta: { color: "#666", fontFamily: "sans-serif", fontSize: "13px", margin: "0 0 40px" },
-    layout: { display: "grid", gridTemplateColumns: "1fr 320px", gap: "24px" },
-    trackerCard: { background: "#1a1208", border: "1px solid #2a2010", borderRadius: "14px", padding: "28px", marginBottom: "20px" },
+    layout: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 320px",
+      gap: "24px",
+    },
+    trackerCard: { background: "#1a1208", border: "1px solid #2a2010", borderRadius: "14px", padding: isMobile ? "20px 14px" : "28px", marginBottom: "20px" },
     trackLine: { position: "absolute", top: "28px", left: "40px", right: "40px", height: "4px", background: "#2a2010", zIndex: 0, borderRadius: "2px" },
     trackFill: { position: "absolute", top: "28px", left: "40px", height: "4px", background: "#f97316", zIndex: 1, borderRadius: "2px", transition: "width 1s ease" },
     stepWrap: { display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", zIndex: 2, flex: 1 },
     stepCircle: (active, done) => ({
-      width: "56px", height: "56px", borderRadius: "50%",
+      width: isMobile ? "44px" : "56px", height: isMobile ? "44px" : "56px", borderRadius: "50%",
       background: done ? "#f97316" : active ? "#22c55e" : "#2a2010",
       border: `3px solid ${done ? "#f97316" : active ? "#22c55e" : "#3a3020"}`,
       display: "flex", alignItems: "center", justifyContent: "center",
-      fontSize: "22px",
+      fontSize: isMobile ? "18px" : "22px",
       boxShadow: active ? "0 0 20px rgba(34,197,94,0.5)" : "none",
       transition: "all 0.5s ease",
     }),
     stepLabel: (active, done) => ({
-      fontFamily: "'Bebas Neue', sans-serif", fontSize: "13px", letterSpacing: "1px",
+      fontFamily: "'Bebas Neue', sans-serif", fontSize: isMobile ? "10px" : "13px", letterSpacing: "1px",
       color: done ? "#f97316" : active ? "#22c55e" : "#444", textAlign: "center",
     }),
     stepSub: { fontFamily: "sans-serif", fontSize: "10px", color: "#555", textAlign: "center" },
@@ -86,7 +97,7 @@ export default function Order() {
       padding: "14px", display: "flex", flexDirection: "column", gap: "4px",
     },
     infoLabel: { fontFamily: "sans-serif", fontSize: "10px", color: "#555", letterSpacing: "1px", textTransform: "uppercase" },
-    infoValue: (color) => ({ fontFamily: "'Bebas Neue', sans-serif", fontSize: "22px", color: color || "#fff" }),
+    infoValue: (color) => ({ fontFamily: "'Bebas Neue', sans-serif", fontSize: isMobile ? "18px" : "22px", color: color || "#fff" }),
   };
 
   return (
