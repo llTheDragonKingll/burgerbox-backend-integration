@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "./CartContext";
+import { motion as Motion } from "framer-motion";
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -147,7 +148,12 @@ export default function Profile() {
       <div style={S.inner}>
         {/* Top row */}
         <div style={S.topRow}>
-          <div style={S.heroCard}>
+          <Motion.div
+            initial={{ x: -60, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: false, amount: 0.3 }}
+            style={S.heroCard}>
             <div style={S.avatarCircle}>
               {session.avatar
                 ? <img src={session.avatar} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -159,9 +165,14 @@ export default function Profile() {
               <p style={S.idText}>ID: #BB-{session.email?.slice(0, 5).toUpperCase() || "99210"}-CRISPY</p>
               <div style={S.vibeBadge}>VIBE CHECKED</div>
             </div>
-          </div>
+          </Motion.div>
 
-          <div style={S.greaseCard}>
+          <Motion.div
+            initial={{ x: 60, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: false, amount: 0.3 }}
+            style={S.greaseCard}>
             <div style={S.greaseLabel}>
               <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "16px", letterSpacing: "2px", color: "#aaa" }}>GREASE LEVEL</span>
               <span style={S.greasePct}>{grease}%</span>
@@ -170,12 +181,17 @@ export default function Profile() {
               <div style={{ ...S.greaseFill, width: `${grease}%` }} />
             </div>
             <p style={S.greaseSub}>{Math.max(0, 10 - orders.length)} ORDERS UNTIL YOUR NEXT GLAZED DELUXE</p>
-          </div>
+          </Motion.div>
         </div>
 
         {/* Mid grid */}
         <div style={S.midGrid}>
-          <div style={S.sectionCard}>
+          <Motion.div
+          initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+          style={S.sectionCard}>
             <div style={S.sectionTitleRow}>
               <h3 style={{ ...S.sectionTitle, margin: 0 }}>HISTORY</h3>
               <span style={S.viewAll} onClick={() => navigate("/orders")}>VIEW ALL →</span>
@@ -197,10 +213,15 @@ export default function Profile() {
                 </div>
               ))
             )}
-          </div>
+          </Motion.div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            <div style={S.sectionCard}>
+            <Motion.div
+            initial={{ x: 60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+            style={S.sectionCard}>
               <h3 style={S.sectionTitle}>📍 HQS</h3>
               <div style={S.hqRow}>
                 <div style={S.hqIcon}>🏠</div>
@@ -216,16 +237,21 @@ export default function Profile() {
                   <p style={S.hqAddr}>{form.work}</p>
                 </div>
               </div>
-            </div>
+            </Motion.div>
 
-            <div style={S.sectionCard}>
+            <Motion.div
+            initial={{ x: 60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+            style={S.sectionCard}>
               <h3 style={S.sectionTitle}>💳 BAG</h3>
               <div style={S.chipCard}>
                 <p style={S.chipLabel}>PRIMARY CHIP</p>
                 <p style={S.chipNum}>•••• 8820</p>
                 <p style={S.chipExp}>EXP 12/26</p>
               </div>
-            </div>
+            </Motion.div>
           </div>
         </div>
 
@@ -252,7 +278,12 @@ export default function Profile() {
         )}
 
         {/* Action buttons */}
-        <div style={S.actionRow}>
+        <Motion.div 
+        initial={{ y: 60, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+        style={S.actionRow}>
           <button style={S.actionBtn("#22c55e")} onClick={() => setEditMode(v => !v)}
             onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
             onMouseLeave={e => e.currentTarget.style.opacity = "1"}>
@@ -271,7 +302,7 @@ export default function Profile() {
             <div><div>SIGN OUT</div><div style={S.actionSub}>LOCK THE VAULT</div></div>
             <span>🔑</span>
           </button>
-        </div>
+        </Motion.div>
       </div>
     </div>
   );

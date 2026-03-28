@@ -33,7 +33,7 @@ const Offer = () => {
   return (
     <div className="mega-container">
       <Motion.header className="header-section"
-      initial={{ y: -80, opacity: 0 }}
+      initial={{ y: -60, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -45,7 +45,7 @@ const Offer = () => {
       <div className="offers-grid">
         {dealsData.map((deal, index) => (
           <Motion.div 
-          initial={{ y: 80, opacity: 0 }}
+          initial={{ y: 60, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.3 }}

@@ -5,6 +5,7 @@ import sides3 from "../assets/sides3.png";
 import sides4 from "../assets/sides4.png";
 import sides5 from "../assets/sides5.png";
 import sides6 from "../assets/sides6.png";
+import { motion as Motion } from "framer-motion";
 
 
 const sides = [
@@ -26,20 +27,30 @@ export default function Slides() {
 
   return (
     <div style={{ background: "#0f0d08", minHeight: "60vh", padding: "40px 32px" }}>
-      <div style={{ marginBottom: "32px" }}>
+      <Motion.div 
+      initial={{ y: -60, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+      
+      style={{ marginBottom: "32px" }}>
         <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "48px", color: "#fff", margin: 0, letterSpacing: "2px" }}>
           ON THE <span style={{ color: "#f97316" }}>SIDE.</span>
         </h2>
         <p style={{ color: "#666", fontFamily: "sans-serif", fontSize: "13px", margin: "4px 0 0" }}>
           Every great burger deserves a worthy companion.
         </p>
-      </div>
+      </Motion.div>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
         {sides.map(item => {
           const tagColor = tagColors[item.tag] || "#f97316";
           return (
-            <div
+            <Motion.div
+             initial={{ y: 60, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false, amount: 0.3 }}
               key={item.id}
               style={{ background: "#1a1208", border: "1px solid #2a2010", borderRadius: "14px", padding: "20px", display: "flex", flexDirection: "column", gap: "10px", transition: "border-color 0.2s, transform 0.2s" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "#f97316"; e.currentTarget.style.transform = "translateY(-3px)"; }}
@@ -73,7 +84,7 @@ export default function Slides() {
               >
                 ADD TO BAG
               </button>
-            </div>
+            </Motion.div>
           );
         })}
       </div>

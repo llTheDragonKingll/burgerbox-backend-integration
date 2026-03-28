@@ -5,7 +5,7 @@ import desert3 from "../assets/desert3.png";
 import desert4 from "../assets/desert4.png";
 import desert5 from "../assets/desert5.png";
 import desert6 from "../assets/desert6.png";
-
+import { motion as Motion } from "framer-motion";
 const deserts = [
   { id: "ds1", category: "deserts", title: "NEON MOUSSE", descript: "Hyper-aerated dark chocolate with a citrus core.", price: 12.00, tag: "AERATED", img: desert1 },
   { id: "ds2", category: "deserts", title: "ATOMIC BROWNIE", descript: "Dense 70% cacao fusion brownie.", price: 14.00, tag: "STRETCHED", img: desert2 },
@@ -31,7 +31,13 @@ export default function Deserts() {
     <div style={{ background: "#0f0d08", minHeight: "60vh", padding: "40px 32px" }}>
       
       {/* Heading */}
-      <div style={{ marginBottom: "32px" }}>
+      <Motion.div 
+      initial={{ y: -60, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+      
+      style={{ marginBottom: "32px" }}>
         <h2 style={{
           fontFamily: "'Bebas Neue', sans-serif",
           fontSize: "48px",
@@ -50,7 +56,7 @@ export default function Deserts() {
         }}>
           Deserts engineered for maximum indulgence.
         </p>
-      </div>
+      </Motion.div>
 
       {/* Grid */}
       <div style={{
@@ -62,7 +68,11 @@ export default function Deserts() {
           const tagColor = tagColors[item.tag];
 
           return (
-            <div
+            <Motion.div
+             initial={{ y: 60, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false, amount: 0.3 }}
               key={item.id}
               style={{
                 background: "#1a1208",
@@ -165,7 +175,7 @@ export default function Deserts() {
                 ADD TO BAG
               </button>
 
-            </div>
+            </Motion.div>
           );
         })}
       </div>

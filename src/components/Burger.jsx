@@ -32,14 +32,14 @@ export default function Burger() {
     <div style={{ background: "#0f0d08", minHeight: "60vh", padding: "40px 32px" }}>
 
       {/* Heading */}
-      <Motion.div 
-      initial={{ y: -80, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: false, amount: 0.3 }}
+      <Motion.div
+        initial={{ y: -60, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
 
-      
-      style={{ marginBottom: "32px" }}>
+
+        style={{ marginBottom: "32px" }}>
         <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "48px", color: "#fff", margin: 0, letterSpacing: "2px" }}>
           THE <span style={{ color: "#f97316" }}>BURGERS.</span>
         </h2>
@@ -55,10 +55,10 @@ export default function Burger() {
           return (
             <Motion.div
 
-            initial={{ y: 80, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: false, amount: 0.3 }}
+              initial={{ y: 60, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false, amount: 0.3 }}
               key={item.id}
               style={{
                 background: "#1a1208",

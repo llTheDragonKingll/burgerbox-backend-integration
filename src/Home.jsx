@@ -28,7 +28,7 @@ export default function Home() {
     <>
       <div className="Home">
         <Motion.div
-          initial={{ y: -80, opacity: 0 }}
+          initial={{ y: -60, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -38,7 +38,7 @@ export default function Home() {
         </Motion.div>
 
         <Motion.div
-          initial={{ y: 80, opacity: 0 }}
+          initial={{ y: 60, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: false, amount: 0.3 }}

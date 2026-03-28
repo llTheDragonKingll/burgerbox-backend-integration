@@ -5,6 +5,7 @@ import drink3 from "../assets/drink3.png";
 import drink4 from "../assets/drink4.png";
 import drink5 from "../assets/drink5.png";
 import drink6 from "../assets/drink6.png";
+import { motion as Motion } from "framer-motion";
 
 const drinks = [
   { id: "d1", category: "drinks", title: "NEON COLA", descript: "Hyper-carbonated cola with a citrus afterburn. Zero chill.", price: 4.50, tag: "CLASSIC", img: drink1, color: "#f97316" },
@@ -20,13 +21,24 @@ export default function Drinks() {
 
   return (
     <div style={{ background: "#0f0d08", minHeight: "60vh", padding: "40px 32px" }}>
-      <h2 style={{ fontFamily: "'Bebas Neue'", fontSize: "48px", color: "#fff" }}>
+      <Motion.h2 
+      initial={{ y: -60, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: false, amount: 0.3 }}
+      
+      style={{ fontFamily: "'Bebas Neue'", fontSize: "48px", color: "#fff" }}>
         QUENCH THE <span style={{ color: "#f97316" }}>FIRE.</span>
-      </h2>
+      </Motion.h2>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "16px" }}>
         {drinks.map(item => (
-          <div key={item.id}
+          <Motion.div 
+           initial={{ y: 60, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false, amount: 0.3 }}
+          key={item.id}
             style={{ background: "#1a1208", border: "1px solid #2a2010", borderRadius: "14px", padding: "20px", display: "flex", flexDirection: "column", gap: "10px" }}
           >
             {/* IMAGE */}
@@ -45,7 +57,7 @@ export default function Drinks() {
               style={{ background: item.color, border: "none", borderRadius: "8px", color: "#fff", padding: "10px" }}>
               ADD TO BAG
             </button>
-          </div>
+          </Motion.div>
         ))}
       </div>
     </div>
